@@ -1,10 +1,35 @@
 package com.vesta.appnotas.entity;
 
+import com.vesta.appnotas.dto.UsuarioConsultaDTO;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "Usuarios")
+@SqlResultSetMapping(
+        name = "UsuarioConsulta",
+        classes = @ConstructorResult(
+                targetClass = UsuarioConsultaDTO.class,
+                columns = {
+                        @ColumnResult(name = "idUsuario", type = Integer.class),
+                        @ColumnResult(name = "nombre", type = String.class),
+                        @ColumnResult(name = "apellidoPaterno", type = String.class),
+                        @ColumnResult(name = "apellidoMaterno", type = String.class),
+                        @ColumnResult(name = "correoElectronico", type = String.class),
+                        @ColumnResult(name = "fechaNacimiento", type = LocalDate.class)
+                }
+        )
+)
+@NamedNativeQuery(
+        name = "Usuario.listarUsuarios",
+        query = "SELECT * FROM fn_listarUsuarios()",
+        resultSetMapping = "UsuarioConsulta"
+)
+@NamedNativeQuery(
+        name = "Usuario.listaUsuarioId",
+        query = "SELECT * FROM fn_buscarUsuariosPorId(:p_idUsuario)",
+        resultSetMapping = "UsuarioConsulta"
+)
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

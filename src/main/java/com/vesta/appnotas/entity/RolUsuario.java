@@ -1,10 +1,27 @@
 package com.vesta.appnotas.entity;
 
+import com.vesta.appnotas.dto.RolUsuarioConsultaDTO;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "RolesUsuario")
+@SqlResultSetMapping(
+        name = "RolUsuarioConsulta",
+        classes = @ConstructorResult(
+                targetClass = RolUsuarioConsultaDTO.class,
+                columns = {
+                        @ColumnResult(name = "idRol", type = Integer.class),
+                        @ColumnResult(name = "nombre", type = String.class),
+                        @ColumnResult(name = "descripcion", type = String.class)
+                }
+        )
+)
+@NamedNativeQuery(
+        name = "Rol.listarRolesUsuario",
+        query = "SELECT * FROM fn_listarRolesUsuario()",
+        resultSetMapping = "RolUsuarioConsulta"
+)
 public class RolUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
