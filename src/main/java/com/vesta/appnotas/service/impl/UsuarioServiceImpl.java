@@ -4,6 +4,7 @@ import com.vesta.appnotas.dto.*;
 import com.vesta.appnotas.repository.UsuarioRepository;
 import com.vesta.appnotas.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional(readOnly = true)
@@ -30,9 +34,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional
     public void crearUsuarioComun(UsuarioCrearComunDTO usuarioCrearComun) {
-        usuRepo.crearUsaurioComun(
+        usuRepo.crearUsuarioComun(
                 usuarioCrearComun.getNombre(),
-                usuarioCrearComun.getContraseñaHash(),
+                passwordEncoder.encode(usuarioCrearComun.getContraseña()),
                 usuarioCrearComun.getApellidoPaterno(),
                 usuarioCrearComun.getApellidoMaterno(),
                 usuarioCrearComun.getCorreoElectronico(),
@@ -46,7 +50,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuRepo.crearUsuarioAdmin(
                 usuarioCrearAdmin.getIdRolUsuario(),
                 usuarioCrearAdmin.getNombre(),
-                usuarioCrearAdmin.getContraseñaHash(),
+                passwordEncoder.encode(usuarioCrearAdmin.getContraseña()),
                 usuarioCrearAdmin.getApellidoPaterno(),
                 usuarioCrearAdmin.getApellidoMaterno(),
                 usuarioCrearAdmin.getCorreoElectronico(),

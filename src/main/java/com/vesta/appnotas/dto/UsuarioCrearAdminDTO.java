@@ -5,18 +5,18 @@ import java.time.LocalDate;
 public class UsuarioCrearAdminDTO {
     private Integer idRolUsuario;
     private String nombre;
-    private String contraseñaHash;
+    private String contraseña;
     private String apellidoPaterno;
     private String apellidoMaterno;
     private String correoElectronico;
     private LocalDate fechaNacimiento;
 
     public UsuarioCrearAdminDTO() {}
-    public UsuarioCrearAdminDTO(Integer idRolUsuario, String nombre, String contraseñaHash, String apellidoPaterno, String apellidoMaterno,
+    public UsuarioCrearAdminDTO(Integer idRolUsuario, String nombre, String contraseña, String apellidoPaterno, String apellidoMaterno,
                                 String correoElectronico, LocalDate fechaNacimiento) {
         this.idRolUsuario = idRolUsuario;
         this.nombre = nombre;
-        this.contraseñaHash = contraseñaHash;
+        this.contraseña = contraseña;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.correoElectronico = correoElectronico;
@@ -29,8 +29,8 @@ public class UsuarioCrearAdminDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void setContraseñaHash(String contraseñaHash) {
-        this.contraseñaHash = contraseñaHash;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
     public void setApellidoPaterno(String apellidoPaterno) {
         this.apellidoPaterno = apellidoPaterno;
@@ -51,8 +51,8 @@ public class UsuarioCrearAdminDTO {
     public String getNombre() {
         return this.nombre;
     }
-    public String getContraseñaHash() {
-        return this.contraseñaHash;
+    public String getContraseña() {
+        return this.contraseña;
     }
     public String getApellidoPaterno() {
         return this.apellidoPaterno;

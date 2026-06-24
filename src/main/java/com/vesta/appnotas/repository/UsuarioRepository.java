@@ -20,7 +20,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
     List<UsuarioConsultaDTO> listarUsuarioId(@Param("p_idUsuario") Integer idUsuario);
 
     @Procedure(procedureName = "sp_crearUsuarioComun")
-    void crearUsaurioComun(
+    void crearUsuarioComun(
             @Param("p_nombre") String nombre,
             @Param("p_contraseñaHash") String contraseñaHash,
             @Param("p_apellidoPaterno") String apellidoPaterno,
