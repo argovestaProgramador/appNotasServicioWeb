@@ -42,6 +42,7 @@ public class RolUsuarioServiceImpl implements RolUsuarioService {
     }
 
     @Override
+    @Transactional
     public void eliminarRolUsuario(Integer idRolUsuario) {
         rolUsuarioRepo.eliminarRolUsuario(idRolUsuario);
     }
