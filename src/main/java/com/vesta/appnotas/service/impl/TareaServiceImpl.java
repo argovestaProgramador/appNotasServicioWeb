@@ -1,5 +1,6 @@
 package com.vesta.appnotas.service.impl;
 
+import com.vesta.appnotas.dto.TareaActualizarDTO;
 import com.vesta.appnotas.dto.TareaConsultaDTO;
 import com.vesta.appnotas.dto.TareaCrearDTO;
 import com.vesta.appnotas.repository.TareaRepository;
@@ -45,4 +46,26 @@ public class TareaServiceImpl implements TareaService {
                 tareaCrearDTO.getFechaFinalizacion()
         );
     }
+
+    @Override
+    @Transactional
+    public void actualizarTarea(TareaActualizarDTO tareaActualizarDTO) {
+        tareaRepo.actualizarTarea(
+                tareaActualizarDTO.getIdCategoriaTarea(),
+                tareaActualizarDTO.getIdUsuario(),
+                tareaActualizarDTO.getTitulo(),
+                tareaActualizarDTO.getDescripcion(),
+                tareaActualizarDTO.getFechaInicio(),
+                tareaActualizarDTO.getFechaFinalizacion(),
+                tareaActualizarDTO.getIdTarea()
+        );
+    }
+
+    @Override
+    @Transactional
+    public void eliminarTarea(Integer idTarea) {
+        tareaRepo.eliminarTarea(idTarea);
+    }
+
+
 }

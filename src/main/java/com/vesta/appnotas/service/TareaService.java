@@ -1,5 +1,6 @@
 package com.vesta.appnotas.service;
 
+import com.vesta.appnotas.dto.TareaActualizarDTO;
 import com.vesta.appnotas.dto.TareaConsultaDTO;
 import com.vesta.appnotas.dto.TareaCrearDTO;
 
@@ -10,4 +11,6 @@ public interface TareaService {
     List<TareaConsultaDTO> listarTareasUsuario(Integer idUsuario);
     List<TareaConsultaDTO> buscarTarea(Integer idTarea);
     void insertarTarea(TareaCrearDTO tareaCrearDTO);
+    void actualizarTarea(TareaActualizarDTO tareaActualizarDTO);
+    void eliminarTarea(Integer idTarea);
 }

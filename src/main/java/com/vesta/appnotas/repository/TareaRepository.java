@@ -32,4 +32,18 @@ public interface TareaRepository extends JpaRepository<Tarea, Integer> {
             @Param("p_fechaFinalizacion") LocalDate fechaFinalizacion
     );
 
+    @Procedure(procedureName = "sp_actualizarTarea")
+    void actualizarTarea(
+        @Param("p_idCategoriaTarea") Integer idCategoriaTarea,
+        @Param("p_idUsuario") Integer idUsuario,
+        @Param("p_titulo") String titulo,
+        @Param("p_descripcion") String descripcion,
+        @Param("p_fechaInicio") LocalDate fechaInicio,
+        @Param("p_fechaFinalizacion") LocalDate fechaFinalizacion,
+        @Param("p_idTarea") Integer idTarea
+    );
+
+    @Procedure(procedureName = "sp_eliminarTarea")
+    void eliminarTarea(@Param("p_idTarea") Integer idTarea);
+
 }
