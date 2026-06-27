@@ -1,11 +1,41 @@
 package com.vesta.appnotas.entity;
 
+import com.vesta.appnotas.dto.TareaConsultaDTO;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "Tareas")
-public class Tareas {
+@SqlResultSetMapping(
+        name = "TareasConsulta",
+        classes = @ConstructorResult(
+                targetClass = TareaConsultaDTO.class,
+                columns = {
+                        @ColumnResult(name = "idTarea",  type = Integer.class),
+                        @ColumnResult(name = "categoria", type = String.class),
+                        @ColumnResult(name = "titulo",  type = String.class),
+                        @ColumnResult(name = "descripcion", type = String.class),
+                        @ColumnResult(name = "fechaInicio",  type = LocalDate.class),
+                        @ColumnResult(name = "fechaFinalizacion", type = LocalDate.class)
+                }
+        )
+)
+@NamedNativeQuery(
+        name = "Tareas.listarTareas",
+        query = "SELECT * FROM fn_listarTareas() ",
+        resultSetMapping = "TareasConsulta"
+)
+@NamedNativeQuery(
+        name = "Tareas.listarTareasUsuario",
+        query = "SELECT * FROM fn_listarTareasUsuario(:p_idUsuario)",
+        resultSetMapping = "TareasConsulta"
+)
+@NamedNativeQuery(
+        name = "Tareas.listarTareaId",
+        query = "SELECT * FROM fn_buscarTareaPorId(:p_idTarea)",
+        resultSetMapping = "TareasConsulta"
+)
+public class Tarea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idTarea")
@@ -27,9 +57,9 @@ public class Tareas {
     @Column(name = "fechaCreacionRegistro")
     private LocalDate fechaCreacionRegistro;
 
-    public Tareas() {}
-    public Tareas (Integer idTarea, Integer idCategoriaTarea, Integer idUsuario, String titulo, String descripcion,
-                   LocalDate fechaInicio, LocalDate fechaFinalizacion, Boolean activo, LocalDate fechaCreacionRegistro) {
+    public Tarea() {}
+    public Tarea(Integer idTarea, Integer idCategoriaTarea, Integer idUsuario, String titulo, String descripcion,
+                 LocalDate fechaInicio, LocalDate fechaFinalizacion, Boolean activo, LocalDate fechaCreacionRegistro) {
         this.idTarea = idTarea;
         this.idCategoriaTarea = idCategoriaTarea;
         this.idUsuario = idUsuario;

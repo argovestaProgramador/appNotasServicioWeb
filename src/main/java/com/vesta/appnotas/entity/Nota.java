@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Notas")
-public class Notas {
+public class Nota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idNota")
@@ -24,9 +24,9 @@ public class Notas {
     @Column(name = "fechaCreacionRegistro")
     private LocalDate fechaCreacionRegistro;
 
-    public Notas() {}
-    public Notas(Integer idNota, Integer idCategoriaNota, Integer idUsuario, String titulo, String descripcion,
-                 Boolean activo, LocalDate fechaCreacionRegistro) {
+    public Nota() {}
+    public Nota(Integer idNota, Integer idCategoriaNota, Integer idUsuario, String titulo, String descripcion,
+                Boolean activo, LocalDate fechaCreacionRegistro) {
         this.idNota = idNota;
         this.idCategoriaNota = idCategoriaNota;
         this.idUsuario = idUsuario;
